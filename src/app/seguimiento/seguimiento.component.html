@@ -1,0 +1,93 @@
+<div>
+    <h2 style="font-weight: bold;" >Nuevo seguimiento</h2>
+    <form [formGroup]="seguimientoForm" (ngSubmit)="addSeguimiento()">
+    <p>   
+      Nombre: <input type="string"  formControlName="nombre" />*
+      <ng-container
+        *ngIf="!formControls.nombre.valid && formControls.nombre.touched">
+        <p *ngIf="formControls.nombre.errors.required">
+          Introduce el nombre.
+        </p>
+      </ng-container>
+    </p>
+
+    <p>
+      Fecha : <input type="string"  formControlName="fecha" />*
+      <ng-container
+        *ngIf="!formControls.fecha.valid &&formControls.fecha.touched">
+        <p *ngIf="formControls.fecha.errors.required">
+          Fecha Obligatoria.
+        </p>
+      </ng-container>
+    </p>
+
+    <p>
+       Telefono: <input type="string" formControlName="telefono" />*
+      <ng-container
+        *ngIf="!formControls.telefono.valid && formControls.telefono.touched">
+        <p *ngIf="formControls.telefono.errors.required">
+          Introduce el telefono del paciente.
+        </p>
+      </ng-container>
+    </p>
+  
+    <p>
+      DNI: <input type="string" formControlName="dni" />*
+      <ng-container
+        *ngIf="!formControls.dni.valid &&formControls.dni.touched">
+        <p *ngIf="formControls.dni.errors.required">
+          Introduce el DNI.
+        </p>
+      </ng-container>
+    </p>
+
+    <p>
+      Fiebre: <select formControlName="fiebre">
+        <option value="no" >Si</option>
+        <option value="si" >No</option>
+      </select>*
+      <ng-container
+        *ngIf="!formControls.fiebre.valid &&formControls.fiebre.touched">
+        <p *ngIf="formControls.fiebre.errors.required">
+         Selecciona una opcion.
+        </p>
+      </ng-container>
+    </p>
+
+    <p>
+        Tos: <select formControlName="tos">
+          <option value="si" >Si</option>
+          <option value="no" >No</option>
+        </select>*
+        <ng-container
+          *ngIf="!formControls.tos.valid &&formControls.tos.touched">
+          <p *ngIf="formControls.tos.errors.required">
+           Selecciona una opcion.
+          </p>
+        </ng-container>
+      </p>
+      <p>
+        Dificultad : <input type="string"  formControlName="dificultad" />*
+        <ng-container
+          *ngIf="!formControls.dificultad.valid &&formControls.dificultad.touched">
+          <p *ngIf="formControls.dificultad.errors.required">
+            Introduce el campo.
+          </p>
+        </ng-container>
+      </p>
+      <p>
+        Malestar : <input type="string"  formControlName="malestar" />*
+        <ng-container
+          *ngIf="!formControls.malestar.valid &&formControls.malestar.touched">
+          <p *ngIf="formControls.malestar.errors.required">
+            Introduce el campo.
+          </p>
+        </ng-container>
+      </p>
+      <p>
+        <input type="submit" value="Añadir" [disabled]="seguimientoForm.invalid" />
+        <input type="submit" value="Atrás" (click) = "goBack()" />
+      </p>
+    </form>
+  </div>
+  

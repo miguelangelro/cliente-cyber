@@ -1,0 +1,36 @@
+
+<div class="container">
+    <table class="table table-striped">
+      <thead >
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha</th>
+          <th>Telefono</th>
+          <th>DNI</th>
+          <th>Fiebre</th>
+          <th>Tos</th>
+          <th>Dificultad</th>
+          <th>Malestar</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let seguimiento of seguimientos">
+          <td>{{seguimiento.nombre}}</td>
+          <td>{{seguimiento.fecha}}</td>
+          <td>{{seguimiento.telefono}}</td>
+          <td>{{seguimiento.dni}}</td>
+          <td>{{seguimiento.fiebre}}</td>
+          <td>{{seguimiento.tos}}</td>
+          <td>{{seguimiento.dificultad}}</td>
+          <td>{{seguimiento.malestar}}</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" (click) = "delete(seguimiento._id)">
+              <i class="material-icons"> Eliminar </i>
+            </button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
