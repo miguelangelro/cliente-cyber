@@ -19,7 +19,7 @@ export class SeguimientopacienteService {
     return this.http.get<SeguimientoPaciente>(environment.API+ "/seguimiento/" + id);
   }
 
-  addSeguimiento(nuevoSeguimiento: SeguimientoPaciente): Observable<any>{
+  sendMessage(nuevoSeguimiento: SeguimientoPaciente): Observable<any>{
     return this.http.post(environment.API + '/seguimiento/add', nuevoSeguimiento);
   }
 

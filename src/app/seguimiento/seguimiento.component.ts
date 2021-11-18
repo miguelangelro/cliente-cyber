@@ -12,44 +12,41 @@ import { SeguimientoPaciente} from '../models/seguimiento.model';
 })
 export class SeguimientoComponent implements OnInit {
 
+  data: string;
+
   seguimientoForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private seguimientoPacienteService: SeguimientopacienteService, private router: Router) { }
 
   ngOnInit(): void {
     this.seguimientoForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.nullValidator]],
-      fecha: ['', [Validators.required, Validators.nullValidator]],
+      message: ['', [Validators.required, Validators.nullValidator]],
+      /*fecha: ['', [Validators.required, Validators.nullValidator]],
       telefono: ['', [Validators.required, Validators.nullValidator]],
       dni: ['', [Validators.required, Validators.nullValidator]],
       fiebre: ['', [Validators.required, Validators.nullValidator]],
       tos: ['', [Validators.required, Validators.nullValidator]],
       dificultad: ['', [Validators.required, Validators.nullValidator]],
-      malestar: ['', [Validators.required, Validators.nullValidator]]
+      malestar: ['', [Validators.required, Validators.nullValidator]]*/
     });
   }
   get formControls(){
     return this.seguimientoForm.controls;
   }
 
-  addSeguimiento(): void{
+  sendMessage(): void{
     if(this.seguimientoForm.invalid){
       return;
     }
-    const nombre = this.seguimientoForm.value.nombre;
-    const fecha = this.seguimientoForm.value.fecha;
-    const telefono = this.seguimientoForm.value.telefono;
-    const dni = this.seguimientoForm.value.dni;
-    const fiebre = this.seguimientoForm.value.fiebre;
-    const tos= this.seguimientoForm.value.tos;
-    const dificultad = this.seguimientoForm.value.dificultad;
-    const malestar = this.seguimientoForm.value.malestar;
-    
-    const seguimiento = {'nombre': nombre, 
-    'fecha': fecha, 'telefono': telefono, 'dni': dni, 'fiebre': fiebre,
-  'tos':tos, 'dificultad': dificultad, 'malestar': malestar};
+    const message = this.seguimientoForm.value.message;
+    this.data = message;
+    const text = {
+      'message': message, 
+    };
 
-  this.seguimientoPacienteService.addSeguimiento(seguimiento).subscribe(async data =>{
-    this.router.navigateByUrl('/home');
+
+
+  this.seguimientoPacienteService.sendMessage(text.message).subscribe(async data =>{
+    this.router.navigateByUrl('/new');
   })
   }
   goBack(){

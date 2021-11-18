@@ -1,16 +1,22 @@
 <div>
-    <h2 style="font-weight: bold;" >Nuevo seguimiento</h2>
-    <form [formGroup]="seguimientoForm" (ngSubmit)="addSeguimiento()">
+    <h2 style="font-weight: bold;" >Mensaje a enviar</h2>
+    <form [formGroup]="seguimientoForm" (ngSubmit)="sendMessage()">
     <p>   
-      Nombre: <input type="string"  formControlName="nombre" />*
+      Mesaje: <input type="string"  formControlName="message" size="50"/>*
       <ng-container
-        *ngIf="!formControls.nombre.valid && formControls.nombre.touched">
-        <p *ngIf="formControls.nombre.errors.required">
-          Introduce el nombre.
+        *ngIf="!formControls.message.valid && formControls.message.touched">
+        <p *ngIf="formControls.message.errors.required">
+          Introduce un mensaje
         </p>
       </ng-container>
     </p>
+   <!-- <button onclick="sendMessage()" [disabled]="seguimientoForm.invalid" >Enviar</button>-->
+   <input type="submit" value="Enviar" [disabled]="seguimientoForm.invalid" />
 
+    <h4>{{data}}</h4>
+
+    <!--<input type="submit" value="Enviar" [disabled]="seguimientoForm.invalid" /> -->
+    <!-- 
     <p>
       Fecha : <input type="string"  formControlName="fecha" />*
       <ng-container
@@ -88,6 +94,7 @@
         <input type="submit" value="Añadir" [disabled]="seguimientoForm.invalid" />
         <input type="submit" value="Atrás" (click) = "goBack()" />
       </p>
+-->
     </form>
   </div>
   
