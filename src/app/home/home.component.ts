@@ -1,5 +1,5 @@
 import { SeguimientopacienteService } from './../services/seguimientopaciente.service';
-import { SeguimientoPaciente } from './../models/seguimiento.model';
+import { Mensaje } from '../models/mensaje.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({
@@ -8,18 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  seguimientos: SeguimientoPaciente[];
+  //seguimientos: SeguimientoPaciente[];
   constructor(private seguimientoPacienteService: SeguimientopacienteService, private router: Router) { }
 
 
   ngOnInit(): void {
-    this.seguimientoPacienteService.getAll().subscribe( data =>{
-      this.seguimientos = data;
-    })
+   // this.seguimientoPacienteService.getAll().subscribe( data =>{
+     // this.seguimientos = data;
+    //})
   }
-  delete(id){
+  /*delete(id){
     this.seguimientoPacienteService.deleteSeguimiento(id).subscribe(async data =>{
       window.location.reload();
     })
-  }
+  }*/
 }

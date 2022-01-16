@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SeguimientoPaciente } from '../models/seguimiento.model'
+import { Mensaje } from '../models/mensaje.model'
+import { signResponse } from '../models/rsa.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { SeguimientoPaciente } from '../models/seguimiento.model'
 export class SeguimientopacienteService {
 
   constructor(private http: HttpClient) { }
-
+/*
   getAll(): Observable<SeguimientoPaciente[]>{
     return this.http.get<SeguimientoPaciente[]>(environment.API + "/seguimiento/all");
   }
@@ -18,13 +19,15 @@ export class SeguimientopacienteService {
   getSeguimiento(id: String): Observable<SeguimientoPaciente>{
     return this.http.get<SeguimientoPaciente>(environment.API+ "/seguimiento/" + id);
   }
-
-  sendMessage(nuevoSeguimiento: SeguimientoPaciente): Observable<any>{
-    return this.http.post(environment.API + '/seguimiento/add', nuevoSeguimiento);
+*/
+  sendMessage(msg: String): Observable<signResponse>{
+    return this.http.post<signResponse>(environment.API + '/rsa/post', {
+      message: msg
+    });
   }
 
-  deleteSeguimiento(id: String): Observable<any>{
+  /*deleteSeguimiento(id: String): Observable<any>{
     return this.http.delete(environment.API + "/seguimiento/"+id);
-  }
+  }*/
   }
 
