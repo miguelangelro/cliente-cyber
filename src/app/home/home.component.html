@@ -5,7 +5,7 @@
               <div class="card-body text-center">
                   <span class="titulo">LISTADO DE PRODUCTOS</span>
                   <button class="btn btn-success float-right">NUEVO</button>
-                  <table class="table table-striped mt-3">
+                  <table *ngIf="listProductos.length > 0" class="table table-striped mt-3">
                     <thead>
                       <tr>
                         <th scope="col">Producto</th>
@@ -14,25 +14,10 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Cocacola</td>
-                        <td>2€</td>
-                        <td>
-                          <i class="fas fa-edit text-primary"></i>
-                          <i class="fas fa-trash text-danger"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Pipas</td>
-                        <td>1€</td>
-                        <td>
-                          <i class="fas fa-edit text-primary"></i>
-                          <i class="fas fa-trash text-danger"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Queso</td>
-                        <td>5€</td>
+                      <tr *ngFor="let producto of listProductos">
+                        <td>{{producto.nombre}}</td>
+                        <td *ngIf="producto.valor > 1">{{producto.valor}} Coins</td>
+                        <td *ngIf="producto.valor == 1">{{producto.valor}} Coin</td>
                         <td>
                           <i class="fas fa-edit text-primary"></i>
                           <i class="fas fa-trash text-danger"></i>
@@ -40,6 +25,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProductos.length == 0">No hay productos para mostrar</h5>
               </div>
             </div>
         </div>
