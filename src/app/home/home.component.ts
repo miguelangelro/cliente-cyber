@@ -1,25 +1,31 @@
-import { SeguimientopacienteService } from './../services/seguimientopaciente.service';
+import { HomeService } from './../services/home.service';
 import { Mensaje } from '../models/mensaje.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Producto } from '../models/producto.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  //seguimientos: SeguimientoPaciente[];
-  constructor(private seguimientoPacienteService: SeguimientopacienteService, private router: Router) { }
+  listProductos: Producto[] = [];
+  
+  constructor(private _homeService: HomeService) { }
 
 
   ngOnInit(): void {
-   // this.seguimientoPacienteService.getAll().subscribe( data =>{
-     // this.seguimientos = data;
-    //})
+    this.obtenerProductos();
   }
-  /*delete(id){
-    this.seguimientoPacienteService.deleteSeguimiento(id).subscribe(async data =>{
-      window.location.reload();
-    })
-  }*/
+  
+
+  obtenerProductos() {
+    this._homeService.getProductos().subscribe(data => {
+      console.log("vemos data recibida:", data);
+      this.listProductos = data.productos;
+    }, error => {
+        console.log(error);
+      })
+  }
+
 }
