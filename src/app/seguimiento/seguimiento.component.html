@@ -1,4 +1,11 @@
+<div class="jumbotron text-center" >
+  <h1 style="font-weight: bold;">RSA Encryption</h1>
+  <br>
+  <p style="font-weight: bold;">Intercambio de mensajes servidor-cliente cifrado con RSA</p> 
+</div>
+
 <div>
+
     <h2 style="font-weight: bold;" >Mensaje a enviar</h2>
     <form [formGroup]="seguimientoForm" (ngSubmit)="sendMessage()">
     <p>   
@@ -15,7 +22,11 @@
 
     <h4>{{data}}</h4>
     <h4>{{dataEncrypted}}</h4>
+    
 
+
+        
+     
     <!--<input type="submit" value="Enviar" [disabled]="seguimientoForm.invalid" /> -->
     <!-- 
     <p>

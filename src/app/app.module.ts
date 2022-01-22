@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { LoginComponent } from './login/login.component';
+import { SharedSecretComponent } from './shared-secret/shared-secret.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     HomeComponent,
     SeguimientoComponent,
-    LoginComponent
+    LoginComponent,
+    SharedSecretComponent
   ],
   imports: [
     BrowserModule,
