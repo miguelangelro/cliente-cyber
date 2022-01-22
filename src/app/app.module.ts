@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SharedSecretComponent } from './shared-secret/shared-secret.component';
 import { PaillierComponent } from './paillier/paillier.component';
 import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     SharedSecretComponent,
     PaillierComponent,
-    UserComponent
+    UserComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
