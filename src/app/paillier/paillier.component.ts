@@ -24,9 +24,23 @@ export class PaillierComponent implements OnInit {
   constructor(private paillier: PaillierService) { }
 
   ngOnInit(): void {
-   
-      
+    
+      this.paillier.getPaillierPubKey().subscribe(
+      async (res) => {
+        console.log("PAILLIER")
+        this.publicKeyPaillier = new paillierBigint.PublicKey(bigintConversion.hexToBigint(res['n']), bigintConversion.hexToBigint(res['g']))
+        console.log("La clave Publica Paillier es: ", this.publicKeyPaillier)
+      },
+      (err) => {
+        console.log('error');
+        Swal.fire('Error en la recogida de la clave', '', 'error');
+      }
+    );
   }
+
+
+
+
  
 
 }

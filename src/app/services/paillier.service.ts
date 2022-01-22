@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import * as paillier from 'paillier-bigint';
+import { Observable } from 'rxjs';
+import * as rsa from 'my-rsa';
+//import bcu from 'bigint-crypto-utils'
+import * as bc from 'bigint-conversion';
+import { bigintToHex, hexToBigint, textToBigint } from 'bigint-conversion';
+import { BuiltinConverter } from '@angular/compiler/src/compiler_util/expression_converter';
+import {Datos, RsaPublicKey,RsaPrivateKey} from '../models/rsa.model'
 
 @Injectable({
   providedIn: 'root'
