@@ -6,22 +6,22 @@
 
 <div>
 
-    <h2 style="font-weight: bold;" >Mensaje a enviar</h2>
+    <h2 style="color:#ffffff;" >Mensaje a enviar</h2>
     <form [formGroup]="seguimientoForm" (ngSubmit)="sendMessage()">
     <p>   
-      Mensaje: <input type="string"  formControlName="message" size="50"/>
+      <span style="color:#ffffff;">Mensaje: </span><input type="string"  formControlName="message" size="50"/>
       <ng-container
         *ngIf="!formControls.message.valid && formControls.message.touched">
         <p *ngIf="formControls.message.errors.required">
-          Introduce un mensaje
+          <span style="color:#ffffff;">Introduce un mensaje</span>
         </p>
       </ng-container>
     </p>
    <!-- <button onclick="sendMessage()" [disabled]="seguimientoForm.invalid" >Enviar</button>-->
-   <input type="submit" value="Enviar" [disabled]="seguimientoForm.invalid" />
+   <input class="btn btn-primary"type="submit" value="Enviar" [disabled]="seguimientoForm.invalid" />
 
-    <h4><br>Mensaje sin encriptar: {{data}}</h4>
-    <h4>Mensaje encriptado: {{dataEncrypted}}</h4>
+    <h4 style="color:#ffffff;"><br>Mensaje sin encriptar: {{data}}</h4>
+    <h4 style="color:#ffffff;">Mensaje encriptado: {{dataEncrypted}}</h4>
     
 
 

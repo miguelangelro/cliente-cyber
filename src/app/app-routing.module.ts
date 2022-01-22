@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'new', component: SeguimientoComponent},
   { path: 'ss', component: SharedSecretComponent},
   { path: 'paillier', component: PaillierComponent},
+  { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
