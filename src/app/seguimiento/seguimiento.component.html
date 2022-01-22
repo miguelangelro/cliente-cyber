@@ -9,7 +9,7 @@
     <h2 style="font-weight: bold;" >Mensaje a enviar</h2>
     <form [formGroup]="seguimientoForm" (ngSubmit)="sendMessage()">
     <p>   
-      Mesaje: <input type="string"  formControlName="message" size="50"/>*
+      Mensaje: <input type="string"  formControlName="message" size="50"/>
       <ng-container
         *ngIf="!formControls.message.valid && formControls.message.touched">
         <p *ngIf="formControls.message.errors.required">
@@ -20,8 +20,8 @@
    <!-- <button onclick="sendMessage()" [disabled]="seguimientoForm.invalid" >Enviar</button>-->
    <input type="submit" value="Enviar" [disabled]="seguimientoForm.invalid" />
 
-    <h4>{{data}}</h4>
-    <h4>{{dataEncrypted}}</h4>
+    <h4><br>Mensaje sin encriptar: {{data}}</h4>
+    <h4>Mensaje encriptado: {{dataEncrypted}}</h4>
     
 
 
