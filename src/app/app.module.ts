@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { LoginComponent } from './login/login.component';
 import { SharedSecretComponent } from './shared-secret/shared-secret.component';
+import { PaillierComponent } from './paillier/paillier.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { SharedSecretComponent } from './shared-secret/shared-secret.component';
     HomeComponent,
     SeguimientoComponent,
     LoginComponent,
-    SharedSecretComponent
+    SharedSecretComponent,
+    PaillierComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
