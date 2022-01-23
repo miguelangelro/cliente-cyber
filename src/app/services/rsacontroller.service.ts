@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import * as rsa from 'my-rsa';
-import * as paillier from 'paillier-bigint';
+//import * as paillier from 'paillier-bigint';
 //import bcu from 'bigint-crypto-utils'
 import * as bc from 'bigint-conversion';
 import { bigintToHex, hexToBigint, textToBigint } from 'bigint-conversion';

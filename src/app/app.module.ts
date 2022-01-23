@@ -12,7 +12,6 @@ import { PaillierComponent } from './paillier/paillier.component';
 import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,1 +1,44 @@
-<p>register works!</p>
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+
+            
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4">Bienvenido/a!</h3>
+                            <p class="text-muted mb-4">Compra de manera anonima y totalmente segura.</p>
+                            <form *ngIf="!isSuccessful"
+                            name="form"
+                            (ngSubmit)="f.form.valid && onSubmit()"
+                            #f="ngForm"
+                            novalidate> 
+                                <div class="form-group mb-3">
+                                    <input type="text" name="nombre" [(ngModel)]="form.nombre" placeholder="Nombre" required #nombre="ngModel" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div class="alert-danger"  *ngIf="nombre.errors && f.submitted"><div *ngIf="nombre.errors.required">Introduce tu nombre</div></div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="text" name="correo" [(ngModel)]="form.correo" placeholder="Email" required #correo="ngModel" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <div class="alert-danger" role="alert" *ngIf="correo.errors && f.submitted">Introduce un email</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="password" name="password" [(ngModel)]="form.password" #password="ngModel" placeholder="Password" required class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">Introduce una contraseña</div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Registrar</button>
+                                <div class="alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                                    Error al registrarse<br />{{ errorMessage }}
+                                  </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
