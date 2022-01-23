@@ -47,14 +47,12 @@ export class PaillierComponent implements OnInit {
     this.data2 = message2;
     this.m1Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message1));
     this.m2Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message2));
-    //this.sumEncrypted = this.paillier.publicKeyPaillier.addition(this.m1Encrypted, this.m2Encrypted)
-    //this.dataEncrypted = bigintToHex(this.sumEncrypted);
+    this.sumEncrypted = this.paillier.publicKeyPaillier.addition(this.m1Encrypted, this.m2Encrypted)
+    this.dataEncrypted = bigintToHex(this.sumEncrypted);
 
     this.paillier.sendMessage(bigintToHex(this.m1Encrypted),bigintToHex(this.m2Encrypted)).subscribe(data => {
       if(data['ok']==true){
-      this.totalResultadoDesdeBacked = bigintConversion.hexToBigint(data['msg'])
-      this.totalResultado = bigintConversion.bigintToText(this.totalResultadoDesdeBacked)
-      console.log(this.totalResultado)
+      this.totalResultadoDesdeBacked = data['msg']
       }
     })
   }
