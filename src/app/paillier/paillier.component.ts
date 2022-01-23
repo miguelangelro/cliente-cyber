@@ -22,11 +22,15 @@ export class PaillierComponent implements OnInit {
   paillierForm: FormGroup;
   publicKeyPaillier: paillierBigint.PublicKey;
   totalResultadoDesdeBacked;
+  totalResultado;
 
   constructor(private formBuilder: FormBuilder, private paillier: PaillierService) { }
 
   ngOnInit(): void {
-    this.obtenerClavePublicaServer();
+    this.paillierForm = this.formBuilder.group({
+      message1: ['', [Validators.required, Validators.nullValidator]],
+      message2: ['', [Validators.required, Validators.nullValidator]]
+    });
   }
 
   get formControls() {
@@ -37,42 +41,23 @@ export class PaillierComponent implements OnInit {
     if (this.paillierForm.invalid) {
       return;
     }
-    this.paillierForm = this.formBuilder.group({
-      message1: ['', [Validators.required, Validators.nullValidator]]
-    }, {
-      message2: ['', [Validators.required, Validators.nullValidator]]
-    });
     const message1 = this.paillierForm.value.message1;
     const message2 = this.paillierForm.value.message2;
     this.data1 = message1;
     this.data2 = message2;
-    this.m1Encrypted = this.publicKeyPaillier.encrypt(textToBigint(this.data1));
-    this.m2Encrypted = this.publicKeyPaillier.encrypt(textToBigint(this.data2));
-    this.sumEncrypted = this.publicKeyPaillier.addition(this.m1Encrypted, this.m2Encrypted)
-    this.dataEncrypted = bigintToHex(this.sumEncrypted);
+    this.m1Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message1));
+    this.m2Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message2));
+    //this.sumEncrypted = this.paillier.publicKeyPaillier.addition(this.m1Encrypted, this.m2Encrypted)
+    //this.dataEncrypted = bigintToHex(this.sumEncrypted);
 
-    this.paillier.sendMessage(this.dataEncrypted).subscribe(data => {
-      this.totalResultadoDesdeBacked = bigintConversion.hexToBigint(data.response.msg)
-      this.totalResultadoDesdeBacked = bigintConversion.bigintToText(this.totalResultadoDesdeBacked)
+    this.paillier.sendMessage(bigintToHex(this.m1Encrypted),bigintToHex(this.m2Encrypted)).subscribe(data => {
+      if(data['ok']==true){
+      this.totalResultadoDesdeBacked = bigintConversion.hexToBigint(data['msg'])
+      this.totalResultado = bigintConversion.bigintToText(this.totalResultadoDesdeBacked)
+      console.log(this.totalResultado)
+      }
     })
   }
-
-  obtenerClavePublicaServer() {
-    this.paillier.getPaillierPubKey().subscribe(
-      async (res) => {
-        console.log("PAILLIER")
-        this.publicKeyPaillier = new paillierBigint.PublicKey(bigintConversion.hexToBigint(res['n']), bigintConversion.hexToBigint(res['g']))
-        console.log("La clave Publica Paillier es: ", this.publicKeyPaillier)
-      },
-      (err) => {
-        console.log('error');
-        Swal.fire('Error en la recogida de la clave', '', 'error');
-      }
-    );
-  }
-
-
-
 
  
 
