@@ -1,5 +1,42 @@
-<div class="jumbotron text-center" >
-    <h1 style="font-weight: bold;">Paillier</h1>
-    <br>
-    <p style="font-weight: bold;">Cifrado e intercambio de mensajes con paillier</p> 
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">Paillier</span><br>
+          <span class="float-cnter"><b>-----Cifrado e intercambio de mensajes con paillier----</b></span>
+          <p></p>
+
+          
+            <h2 style="color:#000000;">Mensaje a enviar</h2>
+            <form [formGroup]="paillierForm" (ngSubmit)="sendMessage()">
+              <p>
+                <span style="color:#000000;">Número1: </span><input type="string" formControlName="message1" size="50" />
+                <ng-container *ngIf="!formControls.message1.valid && formControls.message1.touched">
+                  <p *ngIf="formControls.message1.errors.required">
+                    <span style="color:#ac3030;">Introduce un mensaje</span>
+                  </p>
+                </ng-container>
+              </p>
+              <p>
+                <span style="color:#000000;">Número2: </span><input type="string" formControlName="message2" size="50" />
+                <ng-container *ngIf="!formControls.message2.valid && formControls.message2.touched">
+                  <p *ngIf="formControls.message2.errors.required">
+                    <span style="color:#ac3030;"><b>Introduce 2 números</b></span>
+                  </p>
+                </ng-container>
+              </p>
+              <!-- <button onclick="sendMessage()" [disabled]="paillierForm.invalid" >Enviar</button>-->
+              <input class="btn btn-primary" type="submit" value="SUMA ENCRIPTADA" [disabled]="paillierForm.invalid" />
+          
+              <h4 style="color:#ffffff;"><br>Mensaje sin encriptar: Número1: {{data1}}; Número2: {{data2}};</h4>
+              <h4 style="color:#ffffff;">Número1: {{m1Encrypted}}</h4>
+              <h4 style="color:#ffffff;">Número2: {{m2Encrypted}}</h4>
+              <h4 style="color:#ffffff;">Suma de números encriptados: {{sumEncrypted}}</h4>
+              <h4 style="color:#ffffff;">Resultado obtenido desde Backend: {{totalResultadoDesdeBacked}}</h4>
+            </form>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

@@ -17,12 +17,18 @@ export class PaillierService {
 
   constructor(private http: HttpClient) { }
 
+  sendMessage(msg: String): Observable<any> {
+    return this.http.post<any>(environment.API + '/rsa/paillier/homorfismSum', {
+      message: msg
+    });
+  }
+
   getPaillierPubKey(): any{
     return this.http.get(environment.API + "/rsa/paillier");
   }
 
 
-  Homorfismpost(mensaje: any){
-    return this.http.post(environment.API + "/rsa/paillier/homorfism", mensaje);
-  }
+  // Homorfismpost(mensaje: any){
+  //   return this.http.post(environment.API + "/rsa/paillier/homorfism", mensaje);
+  // }
 }
