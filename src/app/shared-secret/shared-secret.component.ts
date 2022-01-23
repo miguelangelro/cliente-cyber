@@ -48,13 +48,12 @@ export class SharedSecretComponent implements OnInit {
 
   async RecoverySecret(): Promise<void> {
     this.errorsecretSharing = false;
-    let dataEnviar ={keysRecovery: this.keysRecovery }
-
-     ;(await this.cifrarsecret.recoverSecret(dataEnviar)).subscribe(
+    let dataEnviar ={keysRecovery: this.keysRecovery };
+    
+    (await this.cifrarsecret.recoverSecret(dataEnviar)).subscribe(
       async (res) => {
-        console.log("Secreto compartido:", res['recovered'])
-        this.secretRecovery = res['recovered'];
-
+        this.secretRecovery = res['Recuperado'];
+        console.log("EEEPA", this.secretRecovery)
       },
       (err) => {
         console.log('error');
