@@ -1,4 +1,4 @@
-
+import { PaillierService } from './services/paillier.service';
 import { RsacontrollerService } from './services/rsacontroller.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,9 +12,10 @@ import { rsaKeyPair } from 'my-rsa';
 })
 export class AppComponent{
 
-   constructor(rsa:RsacontrollerService){
+   constructor(rsa:RsacontrollerService, paillier: PaillierService){
      rsa.getPubKeyServer();
      rsa.sendPubkey();
+     paillier.obtenerClavePublicaServer();
   }
 
 }

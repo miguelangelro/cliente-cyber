@@ -16,7 +16,6 @@ import {Datos, RsaPublicKey,RsaPrivateKey} from '../models/rsa.model'
 
 export class RsacontrollerService{
   pubKeyServer: rsa.RsaPublicKey;
-  keyPairPaillier;
 
   constructor(private http: HttpClient) { }
 

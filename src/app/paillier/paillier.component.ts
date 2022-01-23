@@ -1,8 +1,10 @@
+import { bigintToHex, textToBigint, hexToBigint } from 'bigint-conversion';
 import { Component, OnInit } from '@angular/core';
 import { PaillierService } from '../services/paillier.service';
 import Swal from 'sweetalert2';
 import * as paillierBigint from 'paillier-bigint'
 import * as bigintConversion from 'bigint-conversion';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-paillier',
@@ -11,35 +13,51 @@ import * as bigintConversion from 'bigint-conversion';
 })
 export class PaillierComponent implements OnInit {
 
-  Numero1 = 0;
-  Numero2 = 0;
-  Numero3 = 0;
-  publicKeyPaillier;
-  NumerosTotales =[];
-  totalResultados;
-  rec1;
-  rec2;
-  rec3;
+  m1Encrypted: bigint;
+  m2Encrypted: bigint;
+  sumEncrypted: bigint;
+  data1: string;
+  data2: string;
+  dataEncrypted: string;
+  paillierForm: FormGroup;
+  publicKeyPaillier: paillierBigint.PublicKey;
+  totalResultadoDesdeBacked;
+  totalResultado;
 
-  constructor(private paillier: PaillierService) { }
+  constructor(private formBuilder: FormBuilder, private paillier: PaillierService) { }
 
   ngOnInit(): void {
-    
-      this.paillier.getPaillierPubKey().subscribe(
-      async (res) => {
-        console.log("PAILLIER")
-        this.publicKeyPaillier = new paillierBigint.PublicKey(bigintConversion.hexToBigint(res['n']), bigintConversion.hexToBigint(res['g']))
-        console.log("La clave Publica Paillier es: ", this.publicKeyPaillier)
-      },
-      (err) => {
-        console.log('error');
-        Swal.fire('Error en la recogida de la clave', '', 'error');
-      }
-    );
+    this.paillierForm = this.formBuilder.group({
+      message1: ['', [Validators.required, Validators.nullValidator]],
+      message2: ['', [Validators.required, Validators.nullValidator]]
+    });
   }
 
+  get formControls() {
+    return this.paillierForm.controls;
+  }
 
+  sendMessage(): void {
+    if (this.paillierForm.invalid) {
+      return;
+    }
+    const message1 = this.paillierForm.value.message1;
+    const message2 = this.paillierForm.value.message2;
+    this.data1 = message1;
+    this.data2 = message2;
+    this.m1Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message1));
+    this.m2Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message2));
+    //this.sumEncrypted = this.paillier.publicKeyPaillier.addition(this.m1Encrypted, this.m2Encrypted)
+    //this.dataEncrypted = bigintToHex(this.sumEncrypted);
 
+    this.paillier.sendMessage(bigintToHex(this.m1Encrypted),bigintToHex(this.m2Encrypted)).subscribe(data => {
+      if(data['ok']==true){
+      this.totalResultadoDesdeBacked = bigintConversion.hexToBigint(data['msg'])
+      this.totalResultado = bigintConversion.bigintToText(this.totalResultadoDesdeBacked)
+      console.log(this.totalResultado)
+      }
+    })
+  }
 
  
 
