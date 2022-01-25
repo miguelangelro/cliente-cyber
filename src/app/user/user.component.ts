@@ -32,6 +32,7 @@ export class UserComponent implements OnInit {
       if(data['ok']==true){
         console.log(data['user']);
         this.saldo = data['user'].saldo_euros;
+        console.log("data: ", data);
         this.listProductos = data['user'].productos;
         this.listCoins = data['user'].coins;
       }

@@ -45,8 +45,8 @@ export class PaillierComponent implements OnInit {
     const message2 = this.paillierForm.value.message2;
     this.data1 = message1;
     this.data2 = message2;
-    this.m1Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message1));
-    this.m2Encrypted = this.paillier.publicKeyPaillier.encrypt(textToBigint(message2));
+    this.m1Encrypted = this.paillier.publicKeyPaillier.encrypt(BigInt(message1));
+    this.m2Encrypted = this.paillier.publicKeyPaillier.encrypt(BigInt(message2));
     this.sumEncrypted = this.paillier.publicKeyPaillier.addition(this.m1Encrypted, this.m2Encrypted)
     this.dataEncrypted = bigintToHex(this.sumEncrypted);
 

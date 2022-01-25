@@ -53,7 +53,7 @@ export class SharedSecretComponent implements OnInit {
     (await this.cifrarsecret.recoverSecret(dataEnviar)).subscribe(
       async (res) => {
         this.secretRecovery = res['Recuperado'];
-        console.log("EEEPA", this.secretRecovery)
+        // console.log("EEEPA", this.secretRecovery)
       },
       (err) => {
         console.log('error');
