@@ -1,10 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link" [routerLink]="['/home']">Tienda</a>
+      <a class="nav-link" [routerLink]="['/ss']">Shared Secret</a>
+      <a class="nav-link" [routerLink]="['/paillier']">Paillier</a>
+      <a class="nav-link" [routerLink]="['/user']">Perfil</a>
+      <!--<a class="nav-item nav-link" [routerLink]="['/new']">Nuevo Seguimiento</a> -->
+    </div>
+  </div>
+</nav>
+
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
               <div class="card-body text-center">
                   <span class="titulo">LISTADO DE PRODUCTOS</span>
-                  <button class="btn btn-success float-right">NUEVO</button>
                   <table *ngIf="listProductos.length > 0" class="table table-striped mt-3">
                     <thead>
                       <tr>
@@ -19,8 +32,8 @@
                         <td *ngIf="producto.valor > 1">{{producto.valor}} Coins</td>
                         <td *ngIf="producto.valor == 1">{{producto.valor}} Coin</td>
                         <td>
-                          <i class="fas fa-edit text-primary"></i>
-                          <i class="fas fa-trash text-danger"></i>
+                          <button class="btn btn-primary" (click)="comprar(producto._id, producto.valor)">Comprar</button>
+                          
                         </td>
                       </tr>
                     </tbody>
@@ -33,39 +46,4 @@
 </div>
 
 
-<!-- 
-<div class="container">
-    <table class="table table-striped">
-      <thead >
-        <tr>
-          <th>Nombre</th>
-          <th>Fecha</th>
-          <th>Telefono</th>
-          <th>DNI</th>
-          <th>Fiebre</th>
-          <th>Tos</th>
-          <th>Dificultad</th>
-          <th>Malestar</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let seguimiento of seguimientos">
-          <td>{{seguimiento.nombre}}</td>
-          <td>{{seguimiento.fecha}}</td>
-          <td>{{seguimiento.telefono}}</td>
-          <td>{{seguimiento.dni}}</td>
-          <td>{{seguimiento.fiebre}}</td>
-          <td>{{seguimiento.tos}}</td>
-          <td>{{seguimiento.dificultad}}</td>
-          <td>{{seguimiento.malestar}}</td>
-          <td>
-            <button class="btn btn-secondary btn-sm" (click) = "delete(seguimiento._id)">
-              <i class="material-icons"> Eliminar </i>
-            </button>
-
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
+<!--<h4 style="color:#000000;">Saldo en coins disponibles: {{usuario.coins.length}} </h4>-->

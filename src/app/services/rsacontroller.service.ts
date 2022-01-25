@@ -8,7 +8,9 @@ import * as rsa from 'my-rsa';
 import * as bc from 'bigint-conversion';
 import { bigintToHex, hexToBigint, textToBigint } from 'bigint-conversion';
 import { BuiltinConverter } from '@angular/compiler/src/compiler_util/expression_converter';
-import {Datos, RsaPublicKey,RsaPrivateKey} from '../models/rsa.model'
+import {Datos, RsaPublicKey,RsaPrivateKey,Cegar} from '../models/rsa.model'
+import * as bcu from 'bigint-crypto-utils'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,4 +40,6 @@ export class RsacontrollerService{
         console.log(data);
       });
   }
+
+  
 }

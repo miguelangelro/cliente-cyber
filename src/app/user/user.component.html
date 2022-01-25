@@ -1,1 +1,74 @@
-<p>user works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" [routerLink]="['/home']">Tienda</a>
+        <a class="nav-link" [routerLink]="['/ss']">Shared Secret</a>
+        <a class="nav-link" [routerLink]="['/paillier']">Paillier</a>
+        <a class="nav-link" [routerLink]="['/user']">Perfil</a>
+        <!--<a class="nav-item nav-link" [routerLink]="['/new']">Nuevo Seguimiento</a> -->
+      </div>
+    </div>
+  </nav>
+
+  
+<h2 style="color:#000000;">Saldo en el banco: {{saldo}}€ </h2>
+            <form [formGroup]="retirarForm" (ngSubmit)="retirar()">
+              <p>
+                <span style="color:#000000;">Retirar </span><input type="string" formControlName="retirar" size="50" />
+                <ng-container *ngIf="!formControls.retirar.valid && formControls.retirar.touched">
+                  <p *ngIf="formControls.retirar.errors.required">
+                    <span style="color:#ac3030;">Introduce una cantidad</span>
+                  </p>
+                </ng-container>
+              </p>
+              <input class="btn btn-primary" type="submit" />
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+              <div class="card-body text-center">
+                  <span class="titulo">Productos comprados</span>
+                  <table *ngIf="listProductos.length > 0" class="table table-striped mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">Productos</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let producto of listProductos">
+                        <td>{{producto.nombre}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProductos.length == 0">No has comprado ningún producto.</h5>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+              <div class="card-body text-center">
+                  <span class="titulo">Mis Coins</span>
+                  <table *ngIf="listCoins.length > 0" class="table table-striped mt-3">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let coin of listCoins">
+                        <td>{{coin}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h5 style="text-align: start; margin-top: 10px;" *ngIf="listCoins.length == 0">No tienes coins en la wallet</h5>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

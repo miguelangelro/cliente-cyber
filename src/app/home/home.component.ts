@@ -1,3 +1,5 @@
+import { User, UserRecibido } from './../models/rsa.model';
+import { UserService } from './../services/user.service';
 import { HomeService } from './../services/home.service';
 import { Mensaje } from '../models/mensaje.model';
 import { Component, OnInit } from '@angular/core';
@@ -10,12 +12,18 @@ import { Producto } from '../models/producto.model';
 })
 export class HomeComponent implements OnInit {
   listProductos: Producto[] = [];
-  
-  constructor(private _homeService: HomeService) { }
+  usuario: UserRecibido;
 
+  constructor(private _homeService: HomeService, private UserService: UserService) { }
+  
 
   ngOnInit(): void {
     this.obtenerProductos();
+    this.UserService.getUser().subscribe(data =>{
+      if(data['ok']==true){
+        this.usuario = data['user'];
+      }
+    });
   }
   
 
@@ -28,4 +36,25 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  comprar(id:string, valor:number){
+    if(valor>this.usuario.coins.length){
+      console.log("No se puede adquirir el producto, fondos insuficientes.")
+    }
+    else{
+      let coinsAenviar:string[]=[];
+      for(let i=0; i<valor; i++){
+        coinsAenviar.push(this.usuario.coins.pop())
+      }
+      this.UserService.verifyRegisteredCoins(coinsAenviar).subscribe(data=>{
+        if(data['ok']== true){
+          console.log(data['msg'])
+          this.UserService.insertProducto(id, coinsAenviar).subscribe(data => {
+            if(data['ok']== true){
+            this.ngOnInit();
+          }
+        })
+        }
+      })
+  }
+  }
 }
